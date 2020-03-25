@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
-class Input extends Component {
+
+class Inputtwo extends Component {
     state = {
     random: 999, 
     value:"",
     isGenerated: false,
-    result: -999
+    result:-999,
+    
    }
+   
    componentDidMount() {
-       const random = Math.ceil(Math.random()*100);
+       const random = Math.ceil((Math.random()*100)+100);
        this.setState({random});
    }
     handleSubmit = e =>{
@@ -25,13 +29,20 @@ class Input extends Component {
        const {random, value} = this.state;
        return Math.abs(random - value);
    };
-   renderResult() {
+    renderResult() {
+     
      const result = this.state.result;
      console.log(`Random: ${this.state.random}`);
      if(result === 0){
-       return <div className="alert alert-success">Correct!</div>
+      
+         
+     
+       return <div className="alert alert-success">Correct..move to the next levelreturn nextlevel<Link to='/Inputthree' class="btn btn-info danger" >Nextlevel</Link></div>
+        
+     
      } else if(result >=1 && result <=4){
        return <div className="alert alert-danger">Hot!</div>
+
      }
        else if(result >=5 && result <=14)
        {
@@ -43,13 +54,14 @@ class Input extends Component {
        return <div className="alert alert-primary">Cold</div>
       
      } 
+     
    }
     render() { 
         return (
             <div className="jumbotron jumbotron-fluid">
        <form onSubmit={this.handleSubmit}>
        <div className="container">
-      <h1>Welcome to the number guessing game</h1>
+      <h1>Welcome to second level</h1>
       <div className="form-row align-items-center">
         <div className="col-auto">
           <label className="sr-only" htmlFor="inlineFormInput">ENTER</label>
@@ -60,19 +72,22 @@ class Input extends Component {
            type="text" 
            className="form-control mb-4" 
            id="inlineFormInput" size="50" 
-           placeholder="Enter number between 1 to 100..."/>
+           placeholder="Enter number between 100 to 200..."/>
            <div className="col-auto">
-        <button type="submit" className="btn btn-primary mb-2">Submit</button>
+           
+        <button type="submit" className="btn btn-primary mb-2"  >Submit</button>
       </div>
         </div>
         </div>
         </div>
-        {this.state.isGenerated && this.renderResult()}
+        {this.state.isGenerated && this.renderResult()
+
+        }
         </form>
         </div>
           );
     }
 }
  
-export default Input;
+export default Inputtwo;
 
